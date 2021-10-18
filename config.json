@@ -1,0 +1,22 @@
+{
+    "name": "es6-basics",
+    "version": "1.0.0",
+    "description": "",
+    "main": "es6-basics.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/arkisoul/es6-basics.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/arkisoul/es6-basics/issues"
+    },
+    "homepage": "https://github.com/arkisoul/es6-basics#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

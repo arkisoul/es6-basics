@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a id="block" href="">Block for 5 seconds</a>
+    <p>
+    <button id="button">This is a button</button>
+    <div id="statusMessage"></div>
+    <script>
+        document.getElementById('button').addEventListener('click', function() {
+            getProducts().then(products => {
+                // create a table
+                // add rows and columns
+                // attach the table to dom
+            }).catch(error => console.error(error))
+        })
+        document.getElementById('block')
+        .addEventListener('click', onClick);
+    
+        function onClick(event) {
+            event.preventDefault();
+    
+            setStatusMessage('Blocking...');
+    
+            // Call setTimeout(), so that browser has time to display
+            // status message
+            setTimeout(function () {
+                sleep(15000);
+                setStatusMessage('Done');
+            }, 0);
+        }
+        function setStatusMessage(msg) {
+            document.getElementById('statusMessage').textContent = msg;
+        }
+        function sleep(milliseconds) {
+            var start = Date.now();
+            while ((Date.now() - start) < milliseconds);
+        }
+        function getProducts() {
+            return new Promise((resolve, reject) => {
+                console.log('get products called')
+                const xml = new XMLHttpRequest()
+                xml.open('GET', 'https://fakestoreapi.com/products')
+                xml.send()
+                
+                xml.onload = function(result) {
+                    if(result.target.status === 200) {
+                        console.log('in onload', result.target.response)
+                        resolve(result.target.response)
+                        // create a table
+                        // add rows and columns
+                        // attach that table to dom
+                    } else {
+                        reject(`Can't get product details`)
+                    }
+                }
+                
+                xml.onerror = function(error) {
+                    console.log(error)
+                    reject(error)
+                }
+            })
+        }
+    </script>
+</body>
+</html>
